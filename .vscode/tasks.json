@@ -4,15 +4,30 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build: findNthFromTheEnd",
+            "label": "cmake build: findNthFromTheEnd",
             "type": "shell",
             "command": "cmake",
-            "options": {"cwd": "${workspaceRoot}/interviewQuestions/linkedList/findNthFromTheEnd/c/"},
-            "args": ["${workspaceRoot}/interviewQuestions/linkedList/findNthFromTheEnd/c/"],
+            "options": {
+                "cwd": "${workspaceRoot}/interviewQuestions/linkedList/findNthFromTheEnd/c/"
+            },
+            "args": [
+                "${workspaceRoot}/interviewQuestions/linkedList/findNthFromTheEnd/c/"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "make compile: findNthFromTheEnd",
+            "type": "shell",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceRoot}/interviewQuestions/linkedList/findNthFromTheEnd/c/"
+            },
+            "dependsOn": [
+                "cmake build: findNthFromTheEnd"
+            ]
         }
     ]
 }
