@@ -1,6 +1,6 @@
-###Challenges:
+# Challenge:
 
-##findNthFromTheEnd.go
+## findNthFromTheEnd.go
 Given a singly-linked list of n-elements, find the nth emement from the end.
 
 So the problem is that once you've passed any given point, you cant go back because you've lost the address.
@@ -12,5 +12,3 @@ a,s,d,f,g
 creates a list like
 a->s->d->g
 
-##findCyclicGraph
-given a graph look for loops.
