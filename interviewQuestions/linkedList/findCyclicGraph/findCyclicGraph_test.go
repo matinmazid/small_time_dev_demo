@@ -5,7 +5,7 @@ import (
 )
 
 func Test_generateGraph(t *testing.T) {
-	got := generateGraph("a,b,c")
+	got := generateGraph("a:b,b:c,c")
 
 	if got.Value != "a" {
 		t.Errorf("didnt get a")
@@ -16,6 +16,10 @@ func Test_generateGraph(t *testing.T) {
 	}
 
 	if got.NextNode.NextNode.Value != "c" {
-		t.Error("didnt get c")
+		t.Errorf("didnt get c")
+	}
+
+	if got.NextNode.NextNode.NextNode != nil {
+		t.Errorf("got an extra dmmy node at the end")
 	}
 }

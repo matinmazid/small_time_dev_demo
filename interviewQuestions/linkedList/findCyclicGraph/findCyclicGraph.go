@@ -38,14 +38,13 @@ func generateGraph(fileData string) *node {
 
 	headPtr := &node{}
 	tail := headPtr
-	for nameIndex := 0; nameIndex < listOfNameSize; {
+	for nameIndex := 0; nameIndex < listOfNameSize; nameIndex++ {
 		tail.Value = listOfNames[nameIndex]
 		if nameIndex+1 < listOfNameSize {
 			tail.NextNode = &node{}
 			tail = tail.NextNode
 		}
 
-		nameIndex++
 	}
 	return headPtr
 }
