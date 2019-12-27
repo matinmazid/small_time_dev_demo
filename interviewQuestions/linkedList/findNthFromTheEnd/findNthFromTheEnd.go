@@ -84,7 +84,7 @@ func generateLinkedList(fileData string) *node {
 	arrayLength := len(listOfNames)
 	for i := 0; i < arrayLength; i++ {
 		newNOde.Value = listOfNames[i]
-		if i+1 < arrayLength {
+		if i < arrayLength-1 {
 			nextNode := &node{}
 			newNOde.Ptr = nextNode
 			newNOde = nextNode

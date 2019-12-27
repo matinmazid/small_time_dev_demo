@@ -12,7 +12,7 @@ func generateTestData() *node {
 	headPtr := ptr
 	for index, value := range nodeValues {
 		ptr.Value = value
-		if index+1 <= len(nodeValues) {
+		if index <= len(nodeValues)-1 {
 			nextNode := node{}
 			ptr.Ptr = &nextNode
 			ptr = &nextNode
