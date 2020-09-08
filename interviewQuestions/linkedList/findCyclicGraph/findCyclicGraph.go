@@ -8,7 +8,7 @@ import (
 
 type node struct {
 	NextNode *node
-	Value    string
+	Name     string
 }
 
 func main() {
@@ -27,28 +27,41 @@ func main() {
 func printLinkedList(headPtr *node) {
 
 	for headPtr != nil {
-		fmt.Println(headPtr.Value + " ->")
+		fmt.Println(headPtr.Name + " ->")
 		headPtr = headPtr.NextNode
 	}
 }
 func generateGraph(fileData string) *node {
 
 	listOfNames := strings.Split(fileData, ",")
-	listOfNameSize := len(listOfNames)
 
-	headPtr := &node{}
-	tail := headPtr
-	for nameIndex := 0; nameIndex < listOfNameSize; nameIndex++ {
-		tail.Value = listOfNames[nameIndex]
-		if nameIndex+1 < listOfNameSize {
-			tail.NextNode = &node{}
-			tail = tail.NextNode
+	var nodeDescr string
+	var headNode node
+	// pop off array
+	doLoop := true
+
+	for doLoop {
+		nodeDescr, listOfNames = listOfNames[0], listOfNames[1:]
+
+		if len(listOfNames) == 0 {
+			doLoop = false
 		}
 
+		nodeParts := strings.Split(nodeDescr, ":")
+		newNode := node{nil, nodeParts[0]}
+		addToGraph(&headNode, newNode)
+		fmt.Println("kdkd ", headNode)
+
 	}
-	return headPtr
+
+	return nil
 }
 
+func addToGraph(headNode *node, nodeToAdd node) {
+	if headNode.Name == "" {
+		headNode = &nodeToAdd
+	}
+}
 func openFile(path string) string {
 	data, err := ioutil.ReadFile(path)
 

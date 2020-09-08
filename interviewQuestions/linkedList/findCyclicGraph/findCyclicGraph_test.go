@@ -7,15 +7,15 @@ import (
 func Test_generateGraph(t *testing.T) {
 	got := generateGraph("a:b,b:c,c")
 
-	if got.Value != "a" {
+	if got.Name != "a" {
 		t.Errorf("didnt get a")
 	}
 
-	if got.NextNode.Value != "b" {
+	if got.NextNode.Name != "b" {
 		t.Errorf("didnt get b")
 	}
 
-	if got.NextNode.NextNode.Value != "c" {
+	if got.NextNode.NextNode.Name != "c" {
 		t.Errorf("didnt get c")
 	}
 
