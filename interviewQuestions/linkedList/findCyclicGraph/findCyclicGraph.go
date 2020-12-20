@@ -31,37 +31,55 @@ func printLinkedList(headPtr *node) {
 		headPtr = headPtr.NextNode
 	}
 }
+
 func generateGraph(fileData string) *node {
 
 	listOfNames := strings.Split(fileData, ",")
 
-	var nodeDescr string
+	var nameOfDestNode string
 	var headNode node
-	// pop off array
-	doLoop := true
 
-	for doLoop {
-		nodeDescr, listOfNames = listOfNames[0], listOfNames[1:]
+	headNode, nameOfDestNode, listOfNames = makeNode(listOfNames)
+	for true {
 
 		if len(listOfNames) == 0 {
-			doLoop = false
+			break
 		}
 
-		nodeParts := strings.Split(nodeDescr, ":")
-		newNode := node{nil, nodeParts[0]}
-		addToGraph(&headNode, newNode)
-		fmt.Println("kdkd ", headNode)
+		var newNode node
+		newNode, nameOfDestNode, listOfNames = makeNode(listOfNames)
+		addToGraph(&headNode, nameOfDestNode, newNode)
 
 	}
 
 	return nil
 }
 
-func addToGraph(headNode *node, nodeToAdd node) {
-	if headNode.Name == "" {
-		headNode = &nodeToAdd
-	}
+func makeNode(listOfNames []string) (node, string, []string) {
+
+	nodeDescr, listOfNames := listOfNames[0], listOfNames[1:]
+	nodeParts := strings.Split(nodeDescr, ":")
+	createdNode := node{nil, nodeParts[0]}
+	// xx := make([]string, len(listOfNames))
+	// copy(xx, listOfNames)
+	return createdNode, nodeParts[1], listOfNames
 }
+
+func addToGraph(headNode *node, nameOfDestNode string, nodeToAdd node) {
+
+	for headNode.NextNode != nil {
+		if headNode.Name == nameOfDestNode {
+
+			nodeToAdd.NextNode = headNode
+			break
+		} else {
+
+			headNode = headNode.NextNode
+		}
+	}
+	headNode.NextNode = &nodeToAdd
+}
+
 func openFile(path string) string {
 	data, err := ioutil.ReadFile(path)
 
